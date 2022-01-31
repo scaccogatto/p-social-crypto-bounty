@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "8e710693-c558-4fa8-889c-152c28c7a608",
+		"name": "social-crypto-bounties",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getBounties",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"_ApplicationId\": \"{{applicationId}}\",\n    \"_SessionToken\": \"{{sessionToken}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{serverUrl}}/functions/getBounties",
+					"host": [
+						"{{serverUrl}}"
+					],
+					"path": [
+						"functions",
+						"getBounties"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBounty",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bountyId\": \"CWWl8yIKWhZWrRWDnASQbtDs\",\n    \"_ApplicationId\": \"{{applicationId}}\",\n    \"_SessionToken\": \"{{sessionToken}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{serverUrl}}/functions/getBounty",
+					"host": [
+						"{{serverUrl}}"
+					],
+					"path": [
+						"functions",
+						"getBounty"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "redeemBounty",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bountyId\": \"I7vb3LgLIeZRsWbZVUUkJ0SQ\",\n    \"_ApplicationId\": \"{{applicationId}}\",\n    \"_SessionToken\": \"{{sessionToken}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{serverUrl}}/functions/redeemBounty",
+					"host": [
+						"{{serverUrl}}"
+					],
+					"path": [
+						"functions",
+						"redeemBounty"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "redeemBounty - mocked",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"mocked\": true,\n    \"bountyId\": \"EFaaTfn26VGh7FBY8VDtF7im\",\n    \"_ApplicationId\": \"{{applicationId}}\",\n    \"_SessionToken\": \"{{sessionToken}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{serverUrl}}/functions/redeemBounty",
+					"host": [
+						"{{serverUrl}}"
+					],
+					"path": [
+						"functions",
+						"redeemBounty"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBountyFromIssueUrl",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"issueUrl\": \"https://github.com/homebridge/homebridge/issues/856\",\n    \"_ApplicationId\": \"{{applicationId}}\",\n    \"_SessionToken\": \"{{sessionToken}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{serverUrl}}/functions/getBountyFromIssueUrl",
+					"host": [
+						"{{serverUrl}}"
+					],
+					"path": [
+						"functions",
+						"getBountyFromIssueUrl"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createBounty",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const date = new Date();",
+							"date.setFullYear(new Date().getFullYear() + 1);",
+							"pm.collectionVariables.set(\"expiration_date\", date.toISOString());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"transactionId\": \"\",\n    \"issueUrl\": \"https://github.com/ziomarco/test-issues-repository/issues/3\",\n    \"description\": \"Sample description\",\n    \"expiration\": \"{{expiration_date}}\",\n    \"prizeInAvax\": 0.0032,\n    \"_ApplicationId\": \"{{applicationId}}\",\n    \"_SessionToken\": \"{{sessionToken}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{serverUrl}}/functions/createBounty",
+					"host": [
+						"{{serverUrl}}"
+					],
+					"path": [
+						"functions",
+						"createBounty"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getWalletGHMatch",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"walletAddress\": \"0x4c218164842f6b6e48926e2359834ed57eae15a8\",\n    \"gitHubUsername\": \"ziomarco\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{serverUrl}}/functions/getWalletGHMatch",
+					"host": [
+						"{{serverUrl}}"
+					],
+					"path": [
+						"functions",
+						"getWalletGHMatch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getWalletAddressIssueMatch",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"walletAddress\": \"0x4c218164842f6b6e48926e2359834ed57eae15a8\",\n    \"issueUrl\": \"https://github.com/ziomarco/test-issues-repository/issues/4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{serverUrl}}/functions/getWalletAddressIssueMatch",
+					"host": [
+						"{{serverUrl}}"
+					],
+					"path": [
+						"functions",
+						"getWalletAddressIssueMatch"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "expiration_date",
+			"value": ""
+		}
+	]
+}

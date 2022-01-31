@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-zinc-900;
+    @apply text-neutral-50;
+    @apply font-mono;
+    @apply font-light;
+  }
+
+  h1 {
+    @apply font-bold;
+    @apply text-4xl;
+    @apply mb-2;
+  }
+
+  h2 {
+    @apply font-bold;
+    @apply text-2xl;
+    @apply mb-2;
+  }
+
+  h3 {
+    @apply font-bold;
+    @apply text-xl;
+    @apply mb-2;
+  }
+
+  p {
+    @apply mb-2;
+    @apply max-w-prose;
+  }
+
+  ul {
+    @apply mb-2;
+    @apply list-disc;
+    @apply list-outside;
+  }
+
+  ol {
+    @apply mb-2;
+    @apply list-decimal;
+    @apply list-outside;
+  }
+
+  a {
+    @apply text-neutral-50;
+    @apply underline;
+  }
+
+  input {
+    @apply text-zinc-900;
+  }
+}

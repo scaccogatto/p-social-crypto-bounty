@@ -1,0 +1,34 @@
+{
+  "name": "social-crypto-bounty-backend",
+  "version": "1.0.0",
+  "description": "Social Crypto Bounty Backend",
+  "scripts": {
+    "build": "npx webpack",
+    "webpack-watch": "npx webpack -w",
+    "dev:watch-logs": "npx moralis-admin-cli get-logs --moralisApiKey $(grep MORALIS_CLI_KEY_DEV  .env | cut -d '=' -f2) --moralisApiSecret $(grep MORALIS_CLI_SECRET_DEV  .env | cut -d '=' -f2)",
+    "dev:cloud-upload": "npx moralis-admin-cli watch-cloud-folder --moralisApiKey $(grep MORALIS_CLI_KEY_DEV  .env | cut -d '=' -f2) --moralisApiSecret $(grep MORALIS_CLI_SECRET_DEV  .env | cut -d '=' -f2) --moralisSubdomain aujtxm5hbubc.usemoralis.com --autoSave 1 --moralisCloudfolder ./dist/",
+    "prod:watch-logs": "npx moralis-admin-cli get-logs --moralisApiKey $(grep MORALIS_CLI_KEY_PROD  .env | cut -d '=' -f2) --moralisApiSecret $(grep MORALIS_CLI_SECRET_PROD  .env | cut -d '=' -f2)",
+    "prod:cloud-upload": "npx moralis-admin-cli watch-cloud-folder --moralisApiKey $(grep MORALIS_CLI_KEY_PROD  .env | cut -d '=' -f2) --moralisApiSecret $(grep MORALIS_CLI_SECRET_PROD  .env | cut -d '=' -f2) --moralisSubdomain aujtxm5hbubc.usemoralis.com --autoSave 1 --moralisCloudfolder ./dist/"
+  },
+  "author": "palmima8@gmail.com",
+  "license": "UNLICENSED",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^17.0.8",
+    "abi-decoder": "^2.4.0",
+    "avalanche": "^3.11.0",
+    "cheerio": "^1.0.0-rc.10",
+    "dotenv-webpack": "^7.1.0",
+    "moralis": "^1.2.1",
+    "moralis-admin-cli": "^2.1.16",
+    "node-polyfill-webpack-plugin": "^1.1.4",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.4",
+    "web3": "^1.7.0",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "browser": {
+    "crypto": false
+  }
+}
