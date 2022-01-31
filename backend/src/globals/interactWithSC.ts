@@ -247,8 +247,10 @@ const abi = [
 ];
 
 export const SCRedeemBounty = async (_bountyUrl: string, logger?: any) => {
+    logger.info('SCRedeemBounty');
     const provider = new ethers.providers.JsonRpcProvider({
-        url: 'https://api.avax-test.network/ext/bc/C/rpc',
+        // url: 'https://api.avax-test.network/ext/bc/C/rpc',
+        url: 'https://speedy-nodes-nyc.moralis.io/38f9d057c816a75abe6f0416/avalanche/testnet',
     });
     await provider.ready;
     logger.info('Provider ready!');
@@ -256,7 +258,15 @@ export const SCRedeemBounty = async (_bountyUrl: string, logger?: any) => {
     const contract = new ethers.Contract(process.env.AVALANCHE_CONTRACT_ADDRESS!, abi, provider);
     const contractWithSigner = contract.connect(wallet);
     logger.info('Contract connected!');
-    const tx = await contractWithSigner.bountyRedeem(_bountyUrl);
-    await tx.wait();
+    // This is because of infinite provider.ready pending, so unfortunately
+    // we had to mock a return transaction (with a valid transaction done on SC)
+    // with another wallet for the demo. We also tried to use avax RPC url,
+    // infinite gas limit, other networks, etc. The contract is working, but 
+    // calling the contract from Cloud Functions is not working in any kind.
+    // We have some ideas in order to fix it, but we won't do it until the hackaton
+    // ends.
+    const options = { gasPrice: 1000000000000000, gasLimit: 1000000000000000 };
+    const tx = await contractWithSigner.bountyRedeem(_bountyUrl, options);
+    logger.info('Method called!');
     return tx.hash;
 }
